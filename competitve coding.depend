@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1445075873 source:/home/priyadarsi/competitve coding/competitve coding/main.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+
