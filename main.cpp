@@ -2,20 +2,15 @@
 #include<vector>
 #include<algorithm>
 using namespace std;
-vector<long long>bit1,bit2;
+vector<long long>bit1(100001,0),bit2(100001,0);
+long long n;
 
 void update(vector<long long>&tree,long long index,long long value){
-    while(index<tree.size()){
-        tree[index] += value;
-        index += (index & ((-1)*index));
-    }
+    for(;index<=n;index += (index & ((-1)*index)))tree[index] += value;
 }
 long long query(vector<long long>tree,long long index){
     long long ret = 0;
-    while(index>0){
-        ret += tree[index];
-        index -= index & ((-1)*index);
-    }
+    for(;index;index -= (index & ((-1)*index)))ret += tree[index];
     return ret;
 }
 
@@ -27,9 +22,9 @@ int main(){
     long long t;
     scanf("%lld", &t);
     while(t--){
-        long long n,c;scanf("%lld %lld", &n, &c);
-        bit1.resize(0);bit1.resize(n+1,0);
-        bit2.resize(0);bit2.resize(n+1,0);
+        long long c;scanf("%lld %lld", &n, &c);
+        for(int i=0;i<=n;i++)bit1[i] = 0;
+        for(int i=0;i<=n;i++)bit2[i] = 0;
 
         while(c--){
             long long a,l,r;
